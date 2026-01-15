@@ -64,4 +64,5 @@ group by exam_id
 select `department_id` , count(*) as `degrees_number`
 from degrees
 group by `department_id`
+-- bonus 12 sistemato
 
