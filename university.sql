@@ -66,3 +66,11 @@ from degrees
 group by `department_id`
 -- bonus 12 sistemato
 
+--13 (da qui in poi esercizi del 15/01/2026) selezionare tutti gli studenti iscritti al corso di laurea in economia
+select * 
+from students
+inner join `degrees`
+on `students`.degree_id = `degrees`.id
+where `degrees`.name= "Corso di Laurea in Economia"
+
+-- 14 selezionare tutti i corsi di laurea magistrale del dipartimento di neuroscienze
