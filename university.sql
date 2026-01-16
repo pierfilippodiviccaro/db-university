@@ -82,14 +82,23 @@ where `departments`.name = "Dipartimento di Neuroscienze"
 and `degrees`.level="magistrale"
 
 --15 selezionare tutti i corsi in cui insegna flavio amato (id=44)
-select count(*)
-as id
-from `teachers`
+select courses.id, courses.name, teachers.id as `teacher_id`, `teachers`.`name` as `teacher_name` , `teachers`.surname
+from teachers
+inner join `course_teacher`
+on `teachers`.id= `course_teacher`.teacher_id
 inner join `courses`
-on `teachers`.course_id = `course_id`
-where `teachers`.name = "Fulvio Amato"
---non funziona, domani chiedo delle delucidazioni da olga perchè è tardi
+on `course_teacher`.`course_id` = `courses`.id
+where `teachers`.id = 44
+
 
 --16 selezionare tutti gli studenti con i dati relativi al corso di laurea a cui sono iscritti e il relativo dipartimento in ordine alfabetico per cognome e nome
+select `students`.*, `degrees`.`name` as `degree_name`, `departments`.`name` as `department_name`
+from students
+inner join `degrees`
+on`students`.`degree_id`=`degrees`.id
+inner join departments
+on `degrees`.`department_id`=`departments`.id
+order by `students`.`surname`, `students`.`name`
 --17 selezionare tutti i corsi di laurea con i relativi corsi e insegnanti
---18 selezionare tutti i docenti che insegnano nel dipartimento di matematica
+--18 selezionare tutti i docenti che insegnano nel dipartimento di matematica (54)
+--19 (bonus)
